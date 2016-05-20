@@ -18,11 +18,13 @@ public class TicTacFirst implements IntentHandler {
             JSONObject slots = json.getJSONObject("slots");
             if(slots.has("firstToGo")){
                 String first = slots.getJSONObject("firstToGo").getString("value");
-                if(first.equalsIgnoreCase("I") || first.equalsIgnoreCase("You")){
-                    //handle player first
-                }else{
-                    //handle AI first
+                if(first == null){
+                    return null;
                 }
+                if(TicTacGame.ended){
+                    TicTacGame.startNewGame();
+                }
+                TicTacGame.humanReady = first.equalsIgnoreCase("I") || first.equalsIgnoreCase("You");
             }
         }
         new Thread(TicTacGame::startNewGame);

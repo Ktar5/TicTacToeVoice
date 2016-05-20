@@ -10,8 +10,12 @@ package me.ktar.tictactoe.server.intents;
 
 import org.json.JSONObject;
 
-public interface IntentHandler {
+interface IntentHandler {
 
     JSONObject handle(JSONObject json);
+
+    default JSONObject error(String error){
+        return new JSONObject().put("error", error);
+    }
 
 }
