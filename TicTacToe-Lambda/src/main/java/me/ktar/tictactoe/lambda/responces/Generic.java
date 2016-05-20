@@ -9,8 +9,6 @@ package me.ktar.tictactoe.lambda.responces;
  */
 
 import com.amazon.speech.speechlet.SpeechletResponse;
-import com.amazon.speech.ui.PlainTextOutputSpeech;
-import com.amazon.speech.ui.SimpleCard;
 
 @SuppressWarnings("Duplicates")
 public class Generic {
@@ -21,18 +19,7 @@ public class Generic {
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     public static SpeechletResponse getHelloResponse() {
-        String speechText = "Hello world";
-
-        // Create the Simple card content.
-        SimpleCard card = new SimpleCard();
-        card.setTitle("HelloWorld");
-        card.setContent(speechText);
-
-        // Create the plain text output.
-        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-        speech.setText(speechText);
-
-        return SpeechletResponse.newTellResponse(speech, card);
+        return Response.getResponse("Hello World", "Hello World");
     }
 
     /**
@@ -41,30 +28,7 @@ public class Generic {
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     public static SpeechletResponse getErrorResponse(String speechText) {
-
-        // Create the Simple card content.
-        SimpleCard card = new SimpleCard();
-        card.setTitle("ERRRROR");
-        card.setContent(speechText);
-
-        // Create the plain text output.
-        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-        speech.setText(speechText);
-
-        return SpeechletResponse.newTellResponse(speech, card);
+        return Response.getResponse(speechText, "Error");
     }
 
-    public static SpeechletResponse getResponse(String title, String speechText) {
-
-        // Create the Simple card content.
-        SimpleCard card = new SimpleCard();
-        card.setTitle(title);
-        card.setContent(speechText);
-
-        // Create the plain text output.
-        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-        speech.setText(speechText);
-
-        return SpeechletResponse.newTellResponse(speech, card);
-    }
 }

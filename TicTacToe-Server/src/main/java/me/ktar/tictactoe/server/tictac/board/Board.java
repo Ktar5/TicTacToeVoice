@@ -20,7 +20,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class Board {
     //private int currentRow, currentCol;  // the current seed's row and column
 
-    private static final BoardPart[][] def = {
+    public static final BoardPart[][] def = {
             {TOP_LEFT, TOP_MID, TOP_RIGHT},
             {MID_LEFT, MID_MID, MID_RIGHT},
             {LOW_LEFT, LOW_MID, LOW_RIGHT}
@@ -65,6 +65,9 @@ public class Board {
 
     private GameStatus play(int row, int col, boolean ai, Seed seed) {
         board[row][col] = seed;
+        if(seed != Seed.EMPTY){
+            return null;
+        }
         printBoard();
         if (hasWon(seed, row, col)) {
             return ai ? GameStatus.AI_WIN : GameStatus.PLAYER_WIN;

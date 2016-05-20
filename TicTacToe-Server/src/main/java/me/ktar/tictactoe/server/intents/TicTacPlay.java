@@ -9,6 +9,8 @@ package me.ktar.tictactoe.server.intents;
  */
 
 import me.ktar.tictactoe.server.tictac.TicTacGame;
+import me.ktar.tictactoe.server.tictac.board.Board;
+import me.ktar.tictactoe.server.tictac.board.GameStatus;
 import org.json.JSONObject;
 
 public class TicTacPlay implements IntentHandler {
@@ -43,19 +45,35 @@ public class TicTacPlay implements IntentHandler {
                         row = 2;
                         break;
                 }
+                int col = 0;
                 switch (positionX.toLowerCase()){
                     case "left":
+                        col = 0;
                         break;
                     case "mid":
                     case "middle":
                     case "center":
+                        col = 1;
                         break;
                     case "right":
+                        col = 2;
                         break;
                 }
-
                 JSONObject response = new JSONObject();
                 response.put("intent", Intents.TICTACFIRST.name());
+
+                GameStatus status = TicTacGame.getBoard().play(Board.def[row][col], TicTacGame.HUMAN);
+                if(status == null){
+                    return response.put("moveNotAvailable", true);
+                }else if(status != GameStatus.NOTHING){
+                    return response.put("gameEnd", status.name().replace("_", " "));
+                }else{
+                    status = TicTacGame.getBoard().play(TicTacGame.AI);
+                    if(status != GameStatus.NOTHING){
+                        return response.put("gameEnd", status.name().replace("_", " "));
+                    }
+                }
+
                 response.put("positionY", positionY.toLowerCase());
                 response.put("positionX", positionX.toLowerCase());
                 return response;

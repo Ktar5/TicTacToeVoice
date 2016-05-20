@@ -18,8 +18,8 @@ import java.util.concurrent.TimeUnit;
 
 public final class TicTacGame {
 
-    private static final Seed AI = Seed.CROSS;
-    private static final Seed HUMAN = Seed.NOUGHT;
+    public static final Seed AI = Seed.CROSS;
+    public static final Seed HUMAN = Seed.NOUGHT;
     private static Board board;
 
     public static boolean
@@ -30,6 +30,10 @@ public final class TicTacGame {
         board = new Board();
         ended = false;
         humanReady = false;
+    }
+
+    public static Board getBoard(){
+        return board;
     }
 
     public static void startTest(){

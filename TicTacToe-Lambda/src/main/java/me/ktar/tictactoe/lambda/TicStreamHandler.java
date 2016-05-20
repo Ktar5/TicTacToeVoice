@@ -5,7 +5,7 @@ import com.amazon.speech.speechlet.lambda.SpeechletRequestStreamHandler;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AudoStreamHandler extends SpeechletRequestStreamHandler {
+public class TicStreamHandler extends SpeechletRequestStreamHandler {
 
     private static final Set<String> supportedApplicationIds = new HashSet<>();
 
@@ -18,8 +18,8 @@ public class AudoStreamHandler extends SpeechletRequestStreamHandler {
         supportedApplicationIds.add("amzn1.echo-sdk-ams.app.52d39e0e-451b-4bc3-92c3-d9656f107eef");
     }
 
-    public AudoStreamHandler() {
-        super(new AudoSpeechlet(), supportedApplicationIds);
+    public TicStreamHandler() {
+        super(new TicSpeechlet(), supportedApplicationIds);
     }
 
 }

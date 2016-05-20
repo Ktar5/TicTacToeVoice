@@ -12,7 +12,7 @@ import me.ktar.tictactoe.lambda.sockets.SocketCommunicator;
 import java.util.Map;
 
 @SuppressWarnings("Duplicates")
-public class AudoSpeechlet implements Speechlet {
+public class TicSpeechlet implements Speechlet {
 
     @Override
     public void onSessionStarted(final SessionStartedRequest request, final Session session) throws SpeechletException {
