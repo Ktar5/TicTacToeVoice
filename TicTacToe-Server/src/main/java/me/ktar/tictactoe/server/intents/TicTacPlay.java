@@ -8,64 +8,61 @@ package me.ktar.tictactoe.server.intents;
  * permission of the aforementioned owner.
  */
 
+import me.ktar.tictactoe.server.tictac.TicTacGame;
 import org.json.JSONObject;
 
 public class TicTacPlay implements IntentHandler {
     @Override
     public JSONObject handle(JSONObject json) {
-        if(json.has("slots") && json.getString("intent").equalsIgnoreCase("LUTRON")){
+        if (json.has("slots")) {
             JSONObject slots = json.getJSONObject("slots");
-            if(slots.has("ONOFF") && slots.has("AREA")){
-                String area = slots.getJSONObject("AREA").getString("value");
-                Light light = Light.valueOf(area.replace(" ", "_").toUpperCase());
-                if(light == null){
-                    return Error.json("light is null in LutronHandler: " + area);
+            if (slots.has("positionY") && slots.has("positionX")) {
+                String positionY = slots.getJSONObject("positionY").getString("value");
+                String positionX = slots.getJSONObject("positionX").getString("value");
+                if (positionY == null || positionX == null) {
+                    return error("I couldn't understand what you just said, try again?");
                 }
-                String onoffstring = slots.getJSONObject("ONOFF").getString("value").toUpperCase();
-                if(!onoffstring.equals("ON") && !onoffstring.equals("OFF") && !onoffstring.equals("OUT")){
-                    return Error.json("LutronHandler knows that " + onoffstring + " is not ON nor OFF");
+                if (TicTacGame.ended) {
+                    TicTacGame.startNewGame();
+                    TicTacGame.humanReady = true;
                 }
-                boolean onoff = onoffstring.equals("ON");
-                Thread a = new Thread(() -> {
-                    AutomatedTelnetClient telnet = new AutomatedTelnetClient(
-                            "192.168.1.201", "lutron", "integration");
-                    telnet.sendCommand(light.getCommand(onoff));
-                    telnet.disconnect();
-                });
+                int row = 0;
+                switch (positionY.toLowerCase()){
+                    case "top":
+                    case "upper":
+                        row = 0;
+                        break;
+                    case "mid":
+                    case "center":
+                    case "middle":
+                        row = 1;
+                        break;
+                    case "bottom":
+                    case "lower":
+                    case "low":
+                        row = 2;
+                        break;
+                }
+                switch (positionX.toLowerCase()){
+                    case "left":
+                        break;
+                    case "mid":
+                    case "middle":
+                    case "center":
+                        break;
+                    case "right":
+                        break;
+                }
 
                 JSONObject response = new JSONObject();
-                response.put("intent", Intents.LUTRON.name());
-                response.put("light", light.name().replace("_", " "));
-                response.put("onoff", onoffstring);
-                return response;
-            }
-        }else if(json.has("slots") && json.getString("intent").equalsIgnoreCase("LUTRONSET")) {
-            JSONObject slots = json.getJSONObject("slots");
-            if (slots.has("AMOUNT")) {
-                String area = slots.getJSONObject("DIMMER").getString("value");
-                Light light = Light.valueOf(area.replace(" ", "_").toUpperCase());
-                if (light == null) {
-                    return Error.json("light is null in LutronHandler: " + area);
-                }
-                int amount = slots.getJSONObject("AMOUNT").getInt("value");
-                if (amount > 100 || amount < 0) {
-                    amount = (amount > 100 ? 100 : 0);
-                }
-                int finalAmount = amount;
-                Thread a = new Thread(() -> {
-                    AutomatedTelnetClient telnet = new AutomatedTelnetClient(
-                            "192.168.1.201", "lutron", "integration");
-                    telnet.sendCommand(light.getCommand(finalAmount));
-                    telnet.disconnect();
-                });
-
-                JSONObject response = new JSONObject();
-                response.put("intent", Intents.LUTRONSET.name());
-                response.put("dimmer", light.name().replace("_", " "));
-                response.put("amount", amount);
+                response.put("intent", Intents.TICTACFIRST.name());
+                response.put("positionY", positionY.toLowerCase());
+                response.put("positionX", positionX.toLowerCase());
                 return response;
             }
         }
-        return Error.json("LutronHandler can't find 'slots' in the json string: " + json.toString());
+        new Thread(TicTacGame::startNewGame);
+
+        return error("I couldn't understand what you just said, try again?");
     }
 }

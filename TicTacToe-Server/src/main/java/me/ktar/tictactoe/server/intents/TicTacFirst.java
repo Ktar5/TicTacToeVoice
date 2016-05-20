@@ -19,19 +19,20 @@ public class TicTacFirst implements IntentHandler {
             if(slots.has("firstToGo")){
                 String first = slots.getJSONObject("firstToGo").getString("value");
                 if(first == null){
-                    return null;
+                    return error("I couldn't understand what you just said, try again?");
                 }
                 if(TicTacGame.ended){
                     TicTacGame.startNewGame();
                 }
                 TicTacGame.humanReady = first.equalsIgnoreCase("I") || first.equalsIgnoreCase("You");
+                JSONObject response = new JSONObject();
+                response.put("intent", Intents.TICTACFIRST.name());
+                response.put("humanFirst", TicTacGame.humanReady);
+                return response;
             }
         }
         new Thread(TicTacGame::startNewGame);
 
-        JSONObject response = new JSONObject();
-        response.put("intent", Intents.TICTACSTART.name());
-
-        return response;
+        return error("I couldn't understand what you just said, try again?");
     }
 }
