@@ -16,8 +16,8 @@ import java.net.Socket;
 
 public class SocketCommunicator {
 
-    private static final String IP = "100.9.187.12";
-    private static final int PORT = 4048;
+    private static final String IP = "104.249.96.3";
+    private static final int PORT = 30000;
 
     public static String send(JSONObject json) {
         return send(json.toString());
@@ -52,6 +52,10 @@ public class SocketCommunicator {
             return input;
         } catch (IOException e) {
             e.printStackTrace(System.out);
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }finally{
+            System.out.println("belhdhwauidhwuiahduiwhduwahduiwhaui");
         }
         System.out.println("DONE");
         return "INVALID";

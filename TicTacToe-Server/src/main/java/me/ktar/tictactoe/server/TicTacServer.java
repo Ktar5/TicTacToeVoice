@@ -18,11 +18,17 @@ public class TicTacServer {
     public static void main(String[] args) throws Exception {
         System.out.println("The Audo socket listening server is up and running!");
         AnsiConsole.systemInstall();
-        //TicTacGame.startNewGame();
-        try (ServerSocket listener = new ServerSocket(4048)) {
+        //while(true){
+        //    TicTacGame.startTest();
+        //}
+        try (ServerSocket listener = new ServerSocket(30000)) {
             while (true) {
                 new ThreadedRunner(listener.accept()).start();
             }
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }finally{
+            System.out.println("belhdhwauidhwuiahduiwhduwahduiwhaui");
         }
     }
 

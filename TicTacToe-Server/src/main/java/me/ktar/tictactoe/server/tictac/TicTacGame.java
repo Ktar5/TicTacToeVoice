@@ -38,27 +38,27 @@ public final class TicTacGame {
     }
 
     public static void startTest(){
-        boolean ai = true;
-        GameStatus status = GameStatus.NOTHING;
-        board = new Board();
-        while (status == GameStatus.NOTHING) {
-            status = board.play(ai ? AI : HUMAN);
-            ai = !ai;
-            board.printBoard();
+            boolean ai = true;
+            GameStatus status = GameStatus.NOTHING;
+            board = new Board();
+            while (status == GameStatus.NOTHING) {
+                status = board.play(ai ? AI : HUMAN);
+                ai = !ai;
+                board.printBoard();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("Game has: " + status.name());
+            System.out.println("Game has: " + status.name());
+            System.out.println("Game has: " + status.name());
             try {
-                Thread.sleep(1000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
-        System.out.println("Game has: " + status.name());
-        System.out.println("Game has: " + status.name());
-        System.out.println("Game has: " + status.name());
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public void test() {
