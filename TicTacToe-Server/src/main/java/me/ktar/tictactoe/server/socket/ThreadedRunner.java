@@ -28,7 +28,7 @@ public class ThreadedRunner extends Thread {
         if (input.has("intent")) {
             String jsonintent = input.getString("intent");
             response = Intents.valueOf(jsonintent.toUpperCase()).handle(input).toString();
-            //System.out.println("RESPONSE: " + response);
+            System.out.println("RESPONSE: " + response);
         }
 
         return response != null ? response : "invalid";

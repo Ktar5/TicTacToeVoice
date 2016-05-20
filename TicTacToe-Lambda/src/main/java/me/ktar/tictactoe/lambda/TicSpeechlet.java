@@ -28,17 +28,21 @@ public class TicSpeechlet implements Speechlet {
 
     @Override
     public SpeechletResponse onIntent(final IntentRequest request, final Session session) throws SpeechletException {
-        //System.out.printf("onIntent requestId={}, sessionId={}", request.getRequestId(), session.getSessionId());
+        System.out.printf("onIntent requestId={}, sessionId={}", request.getRequestId(), session.getSessionId());
 
         Intent intent = request.getIntent();
         if (intent == null) {
+            System.out.println("11111111111111111");
             throw new SpeechletException("Invalid Intent");
         }
+
+        System.out.println("1" + intent.getName());
 
         JSONObject json = null;
         try {
             json = new JSONObject();
             json.put("intent", intent.getName());
+            System.out.println("12");
             if (!intent.getSlots().isEmpty()) {
                 JSONObject slots = new JSONObject();
                 for (Map.Entry<String, Slot> value : intent.getSlots().entrySet()) {
@@ -55,9 +59,11 @@ public class TicSpeechlet implements Speechlet {
         } catch (JSONException e) {
             System.out.println("JSON Creation failed");
         }
-
+        System.out.println("123");
         String response = SocketCommunicator.send(json);
-        //System.out.println(response);
+        System.out.println("1234");
+        System.out.println(response);
+        System.out.println("12345");
         return DataInterpreter.interpret(response);
     }
 

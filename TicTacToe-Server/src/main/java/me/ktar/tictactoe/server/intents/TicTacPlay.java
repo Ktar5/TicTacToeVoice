@@ -60,7 +60,7 @@ public class TicTacPlay implements IntentHandler {
                         break;
                 }
                 JSONObject response = new JSONObject();
-                response.put("intent", Intents.TICTACFIRST.name());
+                response.put("intent", Intents.TICTACPLAY.name());
 
                 GameStatus status = TicTacGame.getBoard().play(Board.def[row][col], TicTacGame.HUMAN);
                 if(status == null){

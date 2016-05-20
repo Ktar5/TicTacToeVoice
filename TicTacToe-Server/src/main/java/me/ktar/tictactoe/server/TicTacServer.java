@@ -8,22 +8,22 @@ package me.ktar.tictactoe.server;
  * permission of the aforementioned owner.
  */
 
-import me.ktar.tictactoe.server.tictac.TicTacGame;
+import me.ktar.tictactoe.server.socket.ThreadedRunner;
 import org.fusesource.jansi.AnsiConsole;
+
+import java.net.ServerSocket;
 
 public class TicTacServer {
 
     public static void main(String[] args) throws Exception {
         System.out.println("The Audo socket listening server is up and running!");
         AnsiConsole.systemInstall();
-        TicTacGame.startNewGame();
-        /*
-        try (ServerSocket listener = new ServerSocket(4047)) {
+        //TicTacGame.startNewGame();
+        try (ServerSocket listener = new ServerSocket(4048)) {
             while (true) {
                 new ThreadedRunner(listener.accept()).start();
             }
         }
-        */
     }
 
 }

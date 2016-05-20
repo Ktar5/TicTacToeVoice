@@ -30,6 +30,7 @@ public final class TicTacGame {
         board = new Board();
         ended = false;
         humanReady = false;
+        board.printBoard();
     }
 
     public static Board getBoard(){

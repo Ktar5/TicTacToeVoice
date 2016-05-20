@@ -64,10 +64,10 @@ public class Board {
     }
 
     private GameStatus play(int row, int col, boolean ai, Seed seed) {
-        board[row][col] = seed;
-        if(seed != Seed.EMPTY){
+        if(board[row][col] != Seed.EMPTY){
             return null;
         }
+        board[row][col] = seed;
         printBoard();
         if (hasWon(seed, row, col)) {
             return ai ? GameStatus.AI_WIN : GameStatus.PLAYER_WIN;

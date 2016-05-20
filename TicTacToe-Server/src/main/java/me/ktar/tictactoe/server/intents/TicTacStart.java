@@ -14,7 +14,7 @@ import org.json.JSONObject;
 public class TicTacStart implements IntentHandler {
     @Override
     public JSONObject handle(JSONObject json) {
-        new Thread(TicTacGame::startNewGame);
+        TicTacGame.startNewGame();
 
         JSONObject response = new JSONObject();
         response.put("intent", Intents.TICTACSTART.name());
