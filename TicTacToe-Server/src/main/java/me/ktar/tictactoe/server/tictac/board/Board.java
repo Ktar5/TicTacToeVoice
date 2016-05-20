@@ -32,6 +32,10 @@ public class Board {
             {Seed.EMPTY, Seed.EMPTY, Seed.EMPTY}
     };
 
+    public void reset(){
+
+    }
+
     public void printBoard() {
         try {
             clear();
@@ -115,7 +119,10 @@ public class Board {
     }
 
     private BoardPart[][] generateBoard() {
-        BoardPart[][] current = def.clone();
+        BoardPart[][] current = new BoardPart[def.length][];
+        for(int i = 0; i < def.length; i++)
+            current[i] = def[i].clone();
+
         for (int r = 0; r < board.length; r++) {
             Seed[] col = board[r];
             for (int c = 0; c < col.length; c++) {
