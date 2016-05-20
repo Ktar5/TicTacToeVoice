@@ -1,0 +1,29 @@
+{
+  "intents": [
+    {
+      "intent": "TicTacStart"
+    },
+    {
+      "intent": "TicTacFirst",
+      "slots": [
+        {
+          "name": "firstToGo",
+          "type": "PERSON"
+        }
+      ]
+    },
+    {
+      "intent": "TicTacPlay",
+      "slots": [
+        {
+          "name": "positionY",
+          "type": "POSITIONY"
+        },
+        {
+          "name": "positionX",
+          "type": "POSITIONX"
+        }
+      ]
+    }
+  ]
+}

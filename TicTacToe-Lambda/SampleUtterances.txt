@@ -1,0 +1,44 @@
+TicTacStart play with me
+TicTacStart with me
+TicTacStart to start a game
+TicTacStart start a game
+TicTacStart play me
+TicTacStart start
+TicTacStart to start
+TicTacStart against me
+TicTacStart versus me
+
+TicTacFirst {firstToGo} should go
+TicTacFirst {firstToGo} will go
+TicTacFirst {firstToGo} should
+TicTacFirst {firstToGo} will
+TicTacFirst {firstToGo} can
+TicTacFirst {firstToGo} do it
+TicTacFirst {firstToGo} could
+TicTacFirst {firstToGo} can go
+TicTacFirst {firstToGo} could go
+TicTacFirst {firstToGo} should probably go
+TicTacFirst {firstToGo} should go first
+TicTacFirst {firstToGo} will go first
+TicTacFirst {firstToGo} should first
+TicTacFirst {firstToGo} should be first
+TicTacFirst {firstToGo} can be first
+TicTacFirst {firstToGo} can go first
+TicTacFirst {firstToGo} will go first
+TicTacFirst {firstToGo} should do it first
+TicTacFirst {firstToGo} move first
+TicTacFirst {firstToGo} will move
+TicTacFirst {firstToGo} can move first
+TicTacFirst {firstToGo} will move first
+TicTacFirst {firstToGo} should go first
+
+TicTacPlay I'll move at {positionY} {positionX}
+TicTacPlay place me at {positionY} {positionX}
+TicTacPlay {positionY} {positionX}
+TicTacPlay I want {positionY} {positionX}
+TicTacPlay I'll go at {positionY} {positionX}
+TicTacPlay I'll move at the {positionY} {positionX}
+TicTacPlay place me at the {positionY} {positionX}
+TicTacPlay the {positionY} {positionX}
+TicTacPlay I want the {positionY} {positionX}
+TicTacPlay I'll go at the {positionY} {positionX}
