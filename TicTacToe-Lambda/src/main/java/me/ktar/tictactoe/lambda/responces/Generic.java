@@ -10,6 +10,8 @@ package me.ktar.tictactoe.lambda.responces;
 
 import com.amazon.speech.speechlet.SpeechletResponse;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 @SuppressWarnings("Duplicates")
 public class Generic {
 
@@ -29,6 +31,10 @@ public class Generic {
      */
     public static SpeechletResponse getErrorResponse(String speechText) {
         return Response.getResponse(speechText, "Error");
+    }
+
+    public static String selString(String[] strings){
+        return strings[ThreadLocalRandom.current().nextInt(strings.length)];
     }
 
 }

@@ -18,11 +18,17 @@ public class TicTacPlayResponse {
             return Response.newAskResponse("Sorry, but that spot is already taken, try again?", false,
                     "Well? Where do you want to move?", false);
         }else if(json.has("gameEnd")){
-            return Response.getResponse("End Game", "Wow! This game has ended in a " + json.getString("gameEnd"));
+            return TicTacGameEndResponse.getResponse(json.getString("gameEnd"));
         }else{
             String place = json.getString("positionY") + " " + json.getString("positionX");
-            return Response.newAskResponse("Nice move... Now it is my turn... There we go... Your turn again", false,
-                    "Well? Your turn.", false);
+            //<break time="3s"/>
+            return Response.newAskResponse("<speak>" +
+                    "Nice move, now it is my turn <break time=\"2s\"/> " +
+                    "There we go, your turn again"
+                    + "</speak>",
+                    true,
+                    "Well? Your turn.",
+                    false);
         }
     }
 
