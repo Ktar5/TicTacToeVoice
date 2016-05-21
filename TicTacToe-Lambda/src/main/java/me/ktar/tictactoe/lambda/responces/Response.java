@@ -63,4 +63,17 @@ public class Response {
         return SpeechletResponse.newTellResponse(speech, card);
     }
 
+    public static SpeechletResponse getSsmlResponse(String title, String speechText) {
+
+        // Create the Simple card content.
+        SimpleCard card = new SimpleCard();
+        card.setTitle(title);
+        card.setContent(speechText);
+
+        SsmlOutputSpeech outputSpeech = new SsmlOutputSpeech();
+        outputSpeech.setSsml(speechText);
+
+        return SpeechletResponse.newTellResponse(outputSpeech, card);
+    }
+
 }

@@ -13,6 +13,10 @@ import me.ktar.tictactoe.server.tictac.board.Board;
 import me.ktar.tictactoe.server.tictac.board.GameStatus;
 import org.json.JSONObject;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class TicTacPlay implements IntentHandler {
     @Override
     public JSONObject handle(JSONObject json) {
@@ -63,12 +67,15 @@ public class TicTacPlay implements IntentHandler {
                 response.put("intent", Intents.TICTACPLAY.name());
 
                 GameStatus status = TicTacGame.getBoard().play(Board.def[row][col], TicTacGame.HUMAN);
+                TicTacGame.getBoard().printBoard();
                 if(status == null){
                     return response.put("moveNotAvailable", true);
                 }else if(status != GameStatus.NOTHING){
+                    haltBoardView();
                     return response.put("gameEnd", status.name().replace("_", " "));
-                }else{
+                }else{ //it does == nothing
                     status = TicTacGame.getBoard().play(TicTacGame.AI);
+                    haltBoardView();
                     if(status != GameStatus.NOTHING){
                         return response.put("gameEnd", status.name().replace("_", " "));
                     }
@@ -82,5 +89,10 @@ public class TicTacPlay implements IntentHandler {
         new Thread(TicTacGame::startNewGame);
 
         return error("I couldn't understand what you just said, try again?");
+    }
+
+    public static void haltBoardView(){
+        final ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
+        exec.schedule(() -> TicTacGame.getBoard().printBoard(), 4, TimeUnit.SECONDS);
     }
 }

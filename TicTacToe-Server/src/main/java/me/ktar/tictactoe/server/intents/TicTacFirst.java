@@ -27,6 +27,7 @@ public class TicTacFirst implements IntentHandler {
                 TicTacGame.humanReady = first.equalsIgnoreCase("I") || first.equalsIgnoreCase("Me");
                 if(!TicTacGame.humanReady){
                     TicTacGame.getBoard().play(TicTacGame.AI);
+                    TicTacGame.getBoard().printBoard();
                 }
                 JSONObject response = new JSONObject();
                 response.put("intent", Intents.TICTACFIRST.name());

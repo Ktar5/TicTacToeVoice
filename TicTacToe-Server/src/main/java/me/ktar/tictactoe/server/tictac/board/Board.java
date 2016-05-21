@@ -72,7 +72,6 @@ public class Board {
             return null;
         }
         board[row][col] = seed;
-        printBoard();
         if (hasWon(seed, row, col)) {
             return ai ? GameStatus.AI_WIN : GameStatus.PLAYER_WIN;
         } else if (isDraw()) {
