@@ -71,9 +71,8 @@ public class TicTacPlay implements IntentHandler {
                 if(status == null){
                     return response.put("moveNotAvailable", true);
                 }else if(status != GameStatus.NOTHING){
-                    haltBoardView();
                     return response.put("gameEnd", status.name().replace("_", " "));
-                }else{ //it does == nothing
+                }else { //it does == nothing
                     status = TicTacGame.getBoard().play(TicTacGame.AI);
                     haltBoardView();
                     if(status != GameStatus.NOTHING){

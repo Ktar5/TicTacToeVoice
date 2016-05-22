@@ -32,13 +32,11 @@ public class Board {
             {Seed.EMPTY, Seed.EMPTY, Seed.EMPTY}
     };
 
-    public void reset(){
-
-    }
-
     public void printBoard() {
         try {
             clear();
+            System.out.println();System.out.println();System.out.println();System.out.println();System.out.println();
+            System.out.println();System.out.println();System.out.println();System.out.println();
             BoardPart[][] current = generateBoard();
             printRow(current[0]);
             printMid();
@@ -86,8 +84,8 @@ public class Board {
      * Return true if it is a draw (i.e., no more EMPTY cell)
      */
     private boolean isDraw() {
-        for (int row = 0; row < 3; ++row) {
-            for (int col = 0; col < 3; ++col) {
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
                 if (board[row][col] == Seed.EMPTY) {
                     return false; // an empty seed found, not a draw, exit
                 }
@@ -137,11 +135,12 @@ public class Board {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 
+    public static String spaces = "                                                                                                  ";
+
     private void printRow(BoardPart... parts) {
         for (int i = 0; i < NO.value.length; i++) {
             StringBuilder builder = new StringBuilder("        ")
-                    .append("                             " +
-                            "                                   ");
+                    .append(spaces);
             for (int f = 0; f < 3; f++) {
                 builder.append(ansi()
                         .fgBright(getColor(parts[f]))
@@ -155,10 +154,7 @@ public class Board {
 
     private void printMid() {
         for (int i = 0; i < ARM.value.length; i++) {
-            System.out.print("                                       " +
-                    "                         "
-                    + ARM.value[i]);
-            System.out.println();
+            System.out.println(spaces + ARM.value[i]);
         }
     }
 

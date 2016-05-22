@@ -21,7 +21,7 @@ public class TicTacServer {
         //while(true){
         //    TicTacGame.startTest();
         //}
-        try (ServerSocket listener = new ServerSocket(30000)) {
+        try (ServerSocket listener = new ServerSocket(27017)) {
             while (true) {
                 new ThreadedRunner(listener.accept()).start();
             }

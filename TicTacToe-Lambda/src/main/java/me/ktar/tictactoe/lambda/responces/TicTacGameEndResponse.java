@@ -14,8 +14,7 @@ public class TicTacGameEndResponse {
 
     public static SpeechletResponse getResponse(String json){
         String response = "<speak>" +
-                "Nice move, now it is my turn <break time=\"2s\"/> " +
-                "There we go. <break time=\"1s\"/> %WIN%"
+                "%WIN%"
                 + "</speak>";
 
         switch (json.toLowerCase()){
