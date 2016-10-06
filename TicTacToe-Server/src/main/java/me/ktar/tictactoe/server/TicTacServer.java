@@ -1,6 +1,6 @@
 package me.ktar.tictactoe.server;
 /*
- * Copyright (C) 2013-Current Will Dang (Cuntrekter969) <dont@email.me>
+ * Copyright (C) 2013-Current Carter Gale (Ktar5) <buildfresh@gmail.com>
  * 
  * This file is part of TicTacToeVoice.
  * 
